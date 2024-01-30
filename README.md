@@ -1,0 +1,1 @@
+This is a little POC on how you could leverage Server Sent Event using Litestar and HTMX to create a simple SAQ monitor.
