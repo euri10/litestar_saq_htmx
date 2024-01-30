@@ -1,0 +1,18 @@
+<table class="table-auto w-full text-sm">
+    <thead>
+    <tr class="border-b">
+        <th>Queue</th>
+        <th>Active</th>
+        <th>Queued</th>
+        <th>Scheduled</th>
+    </tr>
+    </thead>
+    <tbody class="text-center">
+    <tr>
+        <td>{{ queue_info.name }}</td>
+        <td>{{ queue_info.active }}</td>
+        <td>{{ queue_info.queued }}</td>
+        <td>{{ queue_info.scheduled }}</td>
+    </tr>
+    </tbody>
+</table>

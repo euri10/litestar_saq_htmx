@@ -1,0 +1,26 @@
+<table class="table-auto w-full text-sm">
+    <thead>
+    <tr class="border-b">
+        <th>function</th>
+        <th>args</th>
+        <th>queue</th>
+        <th>key</th>
+        <th>scheduled</th>
+        <th>queued</th>
+        <th>status</th>
+    </tr>
+    </thead>
+    <tbody class="text-center">
+    {% for job_info in queue_info["jobs"] %}
+        <tr class="odd:bg-white even:bg-slate-200 hover:bg-slate-400">
+            <td>{{ job_info.function }}</td>
+            <td>{{ job_info.kwargs }}</td>
+            <td>{{ job_info.queue }}</td>
+            <td><a href="{{ url_for('job_detail',job_id=job_info.key) }}">{{ job_info.key }}</a></td>
+            <td>{{ job_info.scheduled|format_ts_from_epoch_short if job_info.scheduled }}</td>
+            <td>{{ job_info.queued|format_ts_short }}</td>
+            <td>{{ job_info.status }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

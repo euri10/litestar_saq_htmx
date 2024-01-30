@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "litestar-saq-htmx"
+version = "0.1.0"
+description = ""
+authors = ["euri10 <benoit.barthelet@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+litestar = {git = "https://github.com/litestar-org/litestar.git"}
+saq = "^0.12.2"
+jinja2 = "^3.1.3"
+
+
+[tool.poetry.group.dev.dependencies]
+uvicorn = "^0.27.0.post1"
+ruff = "^0.1.14"
+black = "^24.1.1"
+mypy = "^1.8.0"
+pytest = "^8.0.0"
+httpx-sse = "^0.4.0"
+asgi-lifespan = "^2.1.0"
+coverage = "^7.4.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.run]
+branch = true
+command_line = "-m pytest"
+omit = [".venv/*"]
+source = ["litestar_saq_htmx"]
+relative_files = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:"
+]

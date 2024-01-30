@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>saq monitor</title>
+    <link href="{{ url_for_static_asset("saq_static", "saq_htmx.css") }}" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.9.9"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/sse.js"></script>
+    <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+</head>
+<body>
+<table class="table-auto w-full text-sm">
+    <thead>
+    <tr class="border-b">
+        <th>function</th>
+        <th>kwargs</th>
+        <th>id</th>
+        <th>scheduled</th>
+        <th>progress</th>
+        <th>attempts</th>
+        <th>status</th>
+        <th>result</th>
+    </tr>
+    </thead>
+    <tbody class="text-center">
+    <tr>
+        <td>{{ job.function }}</td>
+        <td>{{ job.kwargs }}</td>
+        <td>{{ job.id }}</td>
+        <td>{{ job.scheduled }}</td>
+        <td>{{ job.progress }}</td>
+        <td>{{ job.attempts }}</td>
+        <td>{{ job.status }}</td>
+        {% if job.status == "failed" %}
+            <td>{{ job.error }}</td>
+        {% else %}
+            <td>{{ job.result }}</td>
+        {% endif %}
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+

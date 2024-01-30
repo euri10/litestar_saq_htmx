@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>saq monitor</title>
+    <link href="{{ url_for_static_asset("saq_static", "saq_htmx.css") }}" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.9.9"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/sse.js"></script>
+    <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+</head>
+<body>
+<div hx-trigger="refresh_container" class="flex flex-col gap-6">
+    <div>
+        <label for="refresh_time" class="text-sm font-small text-gray-700">Refresh time</label>
+        <input type="range" id="refresh_time" value="1" min="1" max="5" step="0.5"
+               oninput="refresh_time_out.value = refresh_time.value">
+        <output id="refresh_time_out">1</output>
+    </div>
+    <div hx-ext="sse"
+         sse-connect="/saq/stream?refresh_time=1"
+         _="on click from #refresh_time set @sse-connect to `/saq/stream?refresh_time=${refresh_time.value}` then call htmx.process(me) then trigger refresh_container"
+         class="flex flex-col gap-6"
+    >
+        <div>
+            <span class="text-xl font-semibold">Queues</span>
+            <div sse-swap="queues"></div>
+        </div>
+        <div>
+            <span class="text-xl font-semibold">Workers</span>
+            <div sse-swap="workers"></div>
+        </div>
+        <div>
+            <span class="text-xl font-semibold">Jobs</span>
+            <div sse-swap="jobs"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

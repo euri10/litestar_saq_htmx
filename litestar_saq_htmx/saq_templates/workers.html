@@ -1,0 +1,24 @@
+<table class="table-auto w-full text-sm">
+    <thead>
+    <tr class="border-b">
+        <th>worker id</th>
+        <th>complete</th>
+        <th>failed</th>
+        <th>retried</th>
+        <th>aborted</th>
+        <th>uptime</th>
+    </tr>
+    </thead>
+    <tbody class="text-center">
+    {% for worker_id, worker_info in queue_info["workers"].items() %}
+        <tr>
+            <td>{{ worker_id }}</td>
+            <td>{{ worker_info.complete }}</td>
+            <td>{{ worker_info.failed }}</td>
+            <td>{{ worker_info.retried }}</td>
+            <td>{{ worker_info.aborted }}</td>
+            <td>{{ "%0.2f" | format(worker_info.uptime / 1_000) }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
