@@ -1,5 +1,4 @@
 from contextlib import contextmanager
-from datetime import datetime, timezone
 from functools import partial
 from unittest import mock
 
@@ -8,11 +7,6 @@ from httpx import AsyncClient
 from httpx_sse import aconnect_sse
 
 from litestar_saq_htmx.controller import generate_events
-from litestar_saq_htmx.plugin import (
-    format_datetime_short,
-    format_ts_short,
-    format_ts_from_epoch_short,
-)
 
 
 @contextmanager

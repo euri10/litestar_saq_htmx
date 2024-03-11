@@ -24,7 +24,7 @@ settings = {
 
 async def enqueue(func, **kwargs):
     queue = Queue.from_url("redis://localhost:6379")
-    for _ in range(10000):
+    for _ in range(1000):
         await queue.enqueue(func, **{k: v() for k, v in kwargs.items()})
 
 
